@@ -41,16 +41,37 @@ export class Register extends React.Component {
 
     this.setState({fontLoaded: true });
   }
+
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
       {
         this.state.fontLoaded ? (
-        <View style={styles.wrap}>
-          <Text>Ahoj</Text>
-          <TouchableOpacity onPress={ () => this.props.navigation.navigate('Welcome')}
-            ><Text>Go to Welcome screen</Text>
+
+        <View style={[styles.wrap, styles.left]}>
+          <StatusBar hidden/>
+          <Text style={[styles.heading, styles.headReg]}>How should{'\n'}I call You</Text>
+
+          <View style={styles.rectangle}></View>
+            
+          <View style={styles.inputWrap}>  
+            <TextInput 
+              style={styles.inputName}
+              placeholder= 'Your name here'
+              onChangeText={(text) => this.setState({text})}
+            />
+          </View>
+
+          <Image source = {require('../img/felix-2.png')} style={styles.felix2} />          
+
+          <TouchableOpacity style={[styles.letsGo]} onPress={ () => this.props.navigation.push('Welcome')}>
+            <Text style={[{textAlign: 'center'},styles.heading]}>Go</Text>
           </TouchableOpacity>
         </View>
         ) : null

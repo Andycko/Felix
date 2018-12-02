@@ -42,7 +42,7 @@ export default StyleSheet.create({
    alignItems: 'flex-start',
   },
   felix:{
-    height: 400,
+    height: '100%',
     width: 300,
     resizeMode: 'contain'
   },
@@ -61,5 +61,49 @@ export default StyleSheet.create({
     zIndex: 1
   },
 
+  //Screen 2
+
+  left: {
+    alignItems: 'flex-start',
+  },
+  headReg: {
+    marginTop: 45,
+    marginBottom: 55,
+    textAlign: 'center',
+    lineHeight: 80,    
+  },
+  rectangle: {
+    backgroundColor: 'rgb(240,128,60)',
+    opacity: 0.74,
+    position: 'absolute',
+    height: 68,
+    width: 298,
+    top: 90,
+    left: 0,
+  },
+  inputWrap: {
+    width: Dimensions.get('screen').width - 60,
+    alignItems: 'center',
+    zIndex: 2
+
+  },
+  inputName:{
+    borderWidth: 4,
+    borderColor: 'rgb(169, 203, 183)',
+    borderStyle: 'dotted',
+    borderRadius: 1,
+    fontSize: 35,
+    fontFamily: "raleway-regular",
+    color: 'white',
+    padding: 15,
+    zIndex: 100
+  },
+  felix2: {
+    position: 'relative',
+    bottom: 190,
+    left: 0,
+    width: '56%',
+    resizeMode: 'contain'
+  },
   
 });

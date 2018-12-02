@@ -7,6 +7,9 @@ const Nav = createStackNavigator(
   {
     Welcome: Welcome,
     Register: Register,
+  },
+  {
+    initialRouteName: 'Register'
   }
 );
 

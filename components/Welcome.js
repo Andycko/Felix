@@ -23,10 +23,6 @@ export class Welcome extends React.Component {
     fontLoaded: false,
   };
 
-  handleOnPress(){
-    alert('pressed');
-  }
-
   async componentDidMount() {
     await Font.loadAsync({
       'raleway-black': require('../assets/fonts/Raleway-Black.ttf'),
@@ -62,7 +58,7 @@ export class Welcome extends React.Component {
 
           <Image source = {require('../img/circle.png')} style={styles.circle} />
           <TouchableOpacity style={[styles.letsGo]} onPress={ () => this.props.navigation.push('Register')}>
-            <Text style={[{textAlign: 'center'},styles.heading]}>Follow{'\n'} me</Text>
+            <Text style={[{textAlign: 'center'},styles.heading]}>Follow{'\n'}me</Text>
           </TouchableOpacity>
         </View>
         ) : null
