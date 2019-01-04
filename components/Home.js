@@ -12,9 +12,10 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import styles from '../styles/Style';
-import { Font } from 'expo';
+import { Font, SQLite } from 'expo';
+const db = SQLite.openDatabase('FelixDB.db')
 
-export class Welcome extends React.Component {
+export class Home extends React.Component {
   static navigationOptions = {
     header: null
   };
@@ -22,6 +23,11 @@ export class Welcome extends React.Component {
   state = {
     fontLoaded: false,
   };
+
+  constructor(props) {
+   super(props);
+   this.state = {name:''}
+  }
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -36,7 +42,14 @@ export class Welcome extends React.Component {
     });
 
     this.setState({fontLoaded: true });
+    
+    db.transaction((tx) => {
+      tx.executeSql('select * from user'),[],
+      (_, { rows: { _array } }) => this.setState({ name: _array[0] })
+    });
   }
+
+  
   render() {
 
     return (
@@ -44,23 +57,10 @@ export class Welcome extends React.Component {
       {
         this.state.fontLoaded ? (
 
-        <View style={styles.wrap}>
-          <StatusBar hidden/>
-          <Text style={styles.heading}>Hello!</Text>
-          <Text style={styles.heading}>I'm <Text style={styles.dif}>Felix</Text></Text>
-
-          <Text style={styles.text}>I'd like to tell you something about wireless security</Text>
-          <Image source={require('../img/rect.png')} style={styles.rect} />
-
-          <View style={styles.imgWrap}>
-            <Image source = {require('../img/felix-1.png')} style={styles.felix} />
+          <View>
+            <Text style={styles.heading}>{"Ahoj " + this.state.name}</Text>
           </View>
 
-          <Image source = {require('../img/circle.png')} style={styles.circle} />
-          <TouchableOpacity style={[styles.letsGo]} onPress={ () => this.props.navigation.navigate('Register')}>
-            <Text style={[{textAlign: 'center'},styles.heading]}>Follow{'\n'}me</Text>
-          </TouchableOpacity>
-        </View>
         ) : null
       }
       </View>
@@ -69,4 +69,4 @@ export class Welcome extends React.Component {
   }
 };
 
-export default Welcome;
+export default Home;

@@ -1,34 +1,37 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
-  ScrollView,
   StatusBar,
   TouchableOpacity,
   Image,
-  Dimensions,
-  TouchableHighlight,
 } from 'react-native';
 import styles from '../styles/Style';
-import { Font } from 'expo';
+import { Font, SQLite } from 'expo';
+const db = SQLite.openDatabase('FelixDB.db')
 
 export class Register extends React.Component {
+  
   static navigationOptions = {
     header: null
+    // disabling header of navigation between screens
   };
 
   state = {
     fontLoaded: false,
+    // inicialing font load state - false
   };
 
-  handleOnPress(){
-    alert('pressed');
+  constructor(props) {
+    super(props);
+    this.state = {name: null,
+                  user: null};
   }
 
   async componentDidMount() {
     await Font.loadAsync({
+      // loading font from files
       'raleway-black': require('../assets/fonts/Raleway-Black.ttf'),
       'raleway-extrabold': require('../assets/fonts/Raleway-ExtraBold.ttf'),
       'raleway-bold': require('../assets/fonts/Raleway-Bold.ttf'),
@@ -38,13 +41,24 @@ export class Register extends React.Component {
       'raleway-light': require('../assets/fonts/Raleway-Light.ttf'),
       'raleway-thin': require('../assets/fonts/Raleway-Thin.ttf'),
     });
-
+    
+  
+    await db.transaction(tx => {
+      tx.executeSql(
+        // droping user table if already exists
+        'DROP TABLE IF EXISTS user;',
+        [],
+      );
+      tx.executeSql(
+        // creating user table with id(primary key), name
+        'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(20));',
+        [],
+        (txn, res) => console.log("Row count: " + res.rows.length)
+      );
+    });
+  
     this.setState({fontLoaded: true });
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {text: ''};
+    // if get to this point, font is loaded -> set state to true
   }
 
   render() {
@@ -53,6 +67,7 @@ export class Register extends React.Component {
       <View style={styles.container}>
       {
         this.state.fontLoaded ? (
+        // check if font is loaded (depending on the state)
 
         <View style={[styles.wrap, styles.left]}>
           <StatusBar hidden/>
@@ -64,22 +79,67 @@ export class Register extends React.Component {
             <TextInput 
               style={styles.inputName}
               placeholder= 'Your name here'
-              onChangeText={(text) => this.setState({text})}
+              onChangeText={(name) => this.setState({name})}
             />
           </View>
 
           <Image source = {require('../img/felix-2.png')} style={styles.felix2} />          
-
-          <TouchableOpacity style={[styles.letsGo]} onPress={ () => this.props.navigation.push('Welcome')}>
-            <Text style={[{textAlign: 'center'},styles.heading]}>Go</Text>
+          <TouchableOpacity 
+            style={[styles.letsGo]} 
+            onPress={() => [
+              this.add(this.state.name),
+              // calling add function           
+              this.setState({name: null}),
+              // setting the this.state.name back to null
+              this.props.navigation.navigate('Home')]
+              // navigating to next screen - Home
+            }>
+          <Text style={[styles.heading, styles.headingReg]}>Go</Text>
           </TouchableOpacity>
         </View>
+
         ) : null
+        //if font is not loaded, render will return null
       }
       </View>
     );
 
   }
+
+  add(text) {
+  // function for adding into database
+    db.transaction(
+      tx => {
+        tx.executeSql(
+        // adding into database
+          'INSERT INTO user (name) values (?);',
+          [text],
+          (txn, res) => console.log("New entry id: " + res.insertId)
+        );
+        tx.executeSql(
+        // selecting whole table and outputting to console
+          'SELECT * FROM user',
+          [],
+          (txn, res) => console.log("Table user: " + JSON.stringify(res.rows))
+        );
+      },
+      null,
+      this.update()
+      // caling update function, see bellow
+      );
+  }
+
+  update() {
+  // used for updating this.state.user with the whole user table
+    db.transaction(tx => {
+      tx.executeSql(
+        'SELECT * FROM user;',
+        [],
+        (txn, res) => this.setState({ user: res.rows._array })
+      );
+    });
+  }
+
 };
 
 export default Register;

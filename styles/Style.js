@@ -68,7 +68,7 @@ export default StyleSheet.create({
   },
   headReg: {
     marginTop: 45,
-    marginBottom: 55,
+    marginBottom: 50,
     textAlign: 'center',
     lineHeight: 80,    
   },
@@ -105,5 +105,9 @@ export default StyleSheet.create({
     width: '56%',
     resizeMode: 'contain'
   },
-  
+  headingReg: {
+    fontSize: 85,
+    marginRight: 15,
+    textAlign: 'center'
+  },  
 });
