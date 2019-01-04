@@ -1,36 +1,38 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
-  ScrollView,
   StatusBar,
   TouchableOpacity,
   Image,
-  Dimensions,
-  TouchableHighlight,
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
 const db = SQLite.openDatabase('FelixDB.db')
+// opening the database as it has already been created
 
 export class Home extends React.Component {
+  
   static navigationOptions = {
     header: null
+    // disabling header of navigation between screens
   };
 
   state = {
     fontLoaded: false,
+    // inicialing font load state - false
   };
 
   constructor(props) {
-   super(props);
-   this.state = {name:''}
+    super(props);
+    this.state = {name: null,
+                  user: null};
   }
 
   async componentDidMount() {
     await Font.loadAsync({
+    // loading font from files
       'raleway-black': require('../assets/fonts/Raleway-Black.ttf'),
       'raleway-extrabold': require('../assets/fonts/Raleway-ExtraBold.ttf'),
       'raleway-bold': require('../assets/fonts/Raleway-Bold.ttf'),
@@ -40,33 +42,42 @@ export class Home extends React.Component {
       'raleway-light': require('../assets/fonts/Raleway-Light.ttf'),
       'raleway-thin': require('../assets/fonts/Raleway-Thin.ttf'),
     });
-
-    this.setState({fontLoaded: true });
     
-    db.transaction((tx) => {
-      tx.executeSql('select * from user'),[],
-      (_, { rows: { _array } }) => this.setState({ name: _array[0] })
+  
+    await db.transaction(tx => {
+      tx.executeSql(
+      // creating user table with id(primary key), name
+        'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(20));',
+        [],
+        (txn, res) => console.log("Row count: " + res.rows.length)
+      );
     });
+  
+    this.setState({fontLoaded: true });
+    // if get to this point, font is loaded -> set state to true
   }
 
-  
   render() {
 
     return (
       <View style={styles.container}>
       {
         this.state.fontLoaded ? (
+        // check if font is loaded (depending on the state)
 
-          <View>
-            <Text style={styles.heading}>{"Ahoj " + this.state.name}</Text>
-          </View>
+        <View style={[styles.wrap, styles.left]}>
+          <StatusBar hidden/>
+          <Text style={[styles.heading, styles.headReg]}>How should{'\n'}I call You</Text>
+        </View>
 
         ) : null
+        //if font is not loaded, render will return null
       }
       </View>
     );
 
   }
+
 };
 
 export default Home;

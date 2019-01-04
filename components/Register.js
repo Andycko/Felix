@@ -10,6 +10,7 @@ import {
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
 const db = SQLite.openDatabase('FelixDB.db')
+// creating database
 
 export class Register extends React.Component {
   
@@ -31,7 +32,7 @@ export class Register extends React.Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      // loading font from files
+    // loading font from files
       'raleway-black': require('../assets/fonts/Raleway-Black.ttf'),
       'raleway-extrabold': require('../assets/fonts/Raleway-ExtraBold.ttf'),
       'raleway-bold': require('../assets/fonts/Raleway-Bold.ttf'),
@@ -45,12 +46,12 @@ export class Register extends React.Component {
   
     await db.transaction(tx => {
       tx.executeSql(
-        // droping user table if already exists
+      // droping user table if already exists
         'DROP TABLE IF EXISTS user;',
         [],
       );
       tx.executeSql(
-        // creating user table with id(primary key), name
+      // creating user table with id(primary key), name
         'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(20));',
         [],
         (txn, res) => console.log("Row count: " + res.rows.length)

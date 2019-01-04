@@ -17,14 +17,17 @@ import { Font } from 'expo';
 export class Welcome extends React.Component {
   static navigationOptions = {
     header: null
+    // disabling header of navigation between screens
   };
 
   state = {
     fontLoaded: false,
+    // inicialing font load state - false
   };
 
   async componentDidMount() {
     await Font.loadAsync({
+    // loading font from files
       'raleway-black': require('../assets/fonts/Raleway-Black.ttf'),
       'raleway-extrabold': require('../assets/fonts/Raleway-ExtraBold.ttf'),
       'raleway-bold': require('../assets/fonts/Raleway-Bold.ttf'),
@@ -36,6 +39,7 @@ export class Welcome extends React.Component {
     });
 
     this.setState({fontLoaded: true });
+    // if get to this point, font is loaded -> set state to true
   }
   render() {
 
@@ -43,6 +47,7 @@ export class Welcome extends React.Component {
       <View style={styles.container}>
       {
         this.state.fontLoaded ? (
+        // check if font is loaded (depending on the state)
 
         <View style={styles.wrap}>
           <StatusBar hidden/>
@@ -61,7 +66,9 @@ export class Welcome extends React.Component {
             <Text style={[{textAlign: 'center'},styles.heading]}>Follow{'\n'}me</Text>
           </TouchableOpacity>
         </View>
+
         ) : null
+        //if font is not loaded, render will return null
       }
       </View>
     );
