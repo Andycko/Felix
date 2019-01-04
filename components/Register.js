@@ -54,7 +54,7 @@ export class Register extends React.Component {
       // creating user table with id(primary key), name
         'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(20));',
         [],
-        (txn, res) => console.log("Row count: " + res.rows.length)
+        (txn, res) => console.log("Row count (create table): " + res.rows.length)
       );
     });
   
@@ -115,32 +115,15 @@ export class Register extends React.Component {
         // adding into database
           'INSERT INTO user (name) values (?);',
           [text],
-          (txn, res) => console.log("New entry id: " + res.insertId)
+          (txn, res) => console.log("New entry id(on press): " + res.insertId)
         );
         tx.executeSql(
         // selecting whole table and outputting to console
           'SELECT * FROM user',
           [],
-          (txn, res) => console.log("Table user: " + JSON.stringify(res.rows))
+          (txn, res) => console.log("Table user(on press): " + JSON.stringify(res.rows))
         );
-      },
-      null,
-      this.update()
-      // caling update function, see bellow
-      );
+      });
   }
-
-  update() {
-  // used for updating this.state.user with the whole user table
-    db.transaction(tx => {
-      tx.executeSql(
-        'SELECT * FROM user;',
-        [],
-        (txn, res) => this.setState({ user: res.rows._array })
-      );
-    });
-  }
-
-};
-
+}
 export default Register;

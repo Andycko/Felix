@@ -26,8 +26,7 @@ export class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {name: null,
-                  user: null};
+    this.state = {name: null};
   }
 
   async componentDidMount() {
@@ -46,10 +45,13 @@ export class Home extends React.Component {
   
     await db.transaction(tx => {
       tx.executeSql(
-      // creating user table with id(primary key), name
-        'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(20));',
-        [],
-        (txn, res) => console.log("Row count: " + res.rows.length)
+      // selecting existing user name
+        'SELECT name FROM user WHERE id = ?',
+        [1],
+        // if succesfully selected, get the array of objects, stringify it, pick just the first object and convert it to String
+        // !!! still left with "Name" not Name !!!
+        (txn, res) => this.setState({ name: JSON.stringify(Object.values(res.rows._array[0]).toString()) }),
+        () => console.log("nemmegy baratom")
       );
     });
   
@@ -67,7 +69,7 @@ export class Home extends React.Component {
 
         <View style={[styles.wrap, styles.left]}>
           <StatusBar hidden/>
-          <Text style={[styles.heading, styles.headReg]}>How should{'\n'}I call You</Text>
+          <Text style={[styles.heading, styles.headReg]}>Hello {this.state.name}!</Text>
         </View>
 
         ) : null
