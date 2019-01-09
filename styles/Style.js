@@ -3,6 +3,19 @@ import React from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
 
 export default StyleSheet.create({
+ 
+  right:{
+    alignItems: 'flex-end',
+  },
+  left: {
+    alignItems: 'flex-start',
+  },
+  center: {
+    alignItems: 'center',
+  },
+
+
+
   container: {
     flex: 1,
     backgroundColor: '#225560',
@@ -61,11 +74,8 @@ export default StyleSheet.create({
     zIndex: 1
   },
 
-  //Screen 2
+  //Screen Register
 
-  left: {
-    alignItems: 'flex-start',
-  },
   headReg: {
     marginTop: 45,
     marginBottom: 50,
@@ -110,4 +120,63 @@ export default StyleSheet.create({
     marginRight: 15,
     textAlign: 'center'
   },  
+
+  // Screen Home
+
+  headHome: {
+    fontSize: 48,
+    marginBottom: 15,
+  },
+  orange: {
+    color: '#F0803C',
+  },
+  subHeading: {
+    color: 'white',
+    fontFamily: 'raleway-regular',
+    fontSize: 33,
+  },
+  subHeadWrap: {
+    width: Dimensions.get('screen').width - 60,
+    marginTop: 5,
+  },
+  margTop: {
+    marginTop: 50
+  },
+  subjectWrapLeft: {
+    width: Dimensions.get('screen').width,
+    height: 90,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.82)',
+    borderWidth: 5,
+    borderColor: '#F0803C',
+    borderStyle: 'dotted',
+    borderRadius: 20,
+    paddingRight: 50,
+    marginBottom: 25,
+    marginRight: 110,
+    elevation: 8,  
+  },  
+  subjectWrapRight: {
+    width: Dimensions.get('screen').width,
+    height: 90,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255,255,255,0.82)',
+    borderWidth: 5,
+    borderColor: '#F0803C',
+    borderStyle: 'dotted',
+    borderRadius: 80,
+    paddingLeft: 50,
+    marginBottom: 25,
+    marginLeft: 110,
+    elevation: 8,  
+  },
+  subjectText: {
+    textAlign: 'center',
+    color: '#225560',
+    fontFamily: 'raleway-medium',
+    fontSize: 28
+  },
+
 });

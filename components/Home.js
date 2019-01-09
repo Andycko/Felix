@@ -45,12 +45,12 @@ export class Home extends React.Component {
   
     await db.transaction(tx => {
       tx.executeSql(
-      // selecting existing user name
         'SELECT name FROM user WHERE id = ?',
+        // selecting existing user name
         [1],
-        // if succesfully selected, get the array of objects, stringify it, pick just the first object and convert it to String
-        // !!! still left with "Name" not Name !!!
-        (txn, res) => this.setState({ name: JSON.stringify(Object.values(res.rows._array[0]).toString()) }),
+        (txn, res) => [this.setState({ name: JSON.stringify(Object.values(res.rows._array[0]).toString()) }),
+                       this.setState({ name: this.state.name.substring(1, this.state.name.length - 1) })],
+                      //get the array of objects, stringify it, pick just the first object and convert it to String
         () => console.log("nemmegy baratom")
       );
     });
@@ -67,9 +67,36 @@ export class Home extends React.Component {
         this.state.fontLoaded ? (
         // check if font is loaded (depending on the state)
 
-        <View style={[styles.wrap, styles.left]}>
+        <View style={[styles.wrap, styles.center]}>
           <StatusBar hidden/>
-          <Text style={[styles.heading, styles.headReg]}>Hello {this.state.name}!</Text>
+          <Text style={[styles.heading, styles.headHome]}>
+            Welcome <Text style={styles.orange}>{this.state.name}</Text>
+          </Text>
+
+          <View style={[styles.left, styles.subHeadWrap]}>
+            <Text style={[styles.subHeading, styles.left]}>Please pick one of these</Text>
+          </View>
+          
+          <View style={[styles.right, styles.subHeadWrap]}>
+            <Text style={[styles.subHeading, styles.right]}>subjects to start learning</Text>
+          </View>
+
+          <View style={[styles.subjectWrapLeft, styles.margTop]}>
+            <Text style={[styles.subjectText]}>Basic vocabulary</Text>
+          </View>
+          
+          <View style={[styles.subjectWrapRight]}>
+            <Text style={[styles.subjectText]}>Wireless Security{'\n'}Mindset</Text>
+          </View>
+
+          <View style={[styles.subjectWrapLeft]}>
+            <Text style={[styles.subjectText]}>Authentication protocols</Text>
+          </View>
+          
+          <View style={[styles.subjectWrapRight]}>
+            <Text style={[styles.subjectText]}>Types of attacks &{'\n'}how to prevent them</Text>
+          </View>
+          
         </View>
 
         ) : null

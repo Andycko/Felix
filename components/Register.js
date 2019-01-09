@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
+  ToastAndroid
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
@@ -78,9 +79,10 @@ export class Register extends React.Component {
             
           <View style={styles.inputWrap}>  
             <TextInput 
-              style={styles.inputName}
+              style= {styles.inputName}
               placeholder= 'Your name here'
-              onChangeText={(name) => this.setState({name})}
+              onChangeText= {(name) => this.setState({name})}
+              autoGrow = 'true'
             />
           </View>
 
@@ -92,8 +94,9 @@ export class Register extends React.Component {
               // calling add function           
               this.setState({name: null}),
               // setting the this.state.name back to null
-              this.props.navigation.navigate('Home')]
+              this.props.navigation.navigate('Home'),
               // navigating to next screen - Home
+              ToastAndroid.show('Please provide me with\nat least two characters', ToastAndroid.SHORT)]
             }>
           <Text style={[styles.heading, styles.headingReg]}>Go</Text>
           </TouchableOpacity>
