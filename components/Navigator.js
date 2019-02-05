@@ -1,6 +1,7 @@
 import Welcome from './Welcome';
 import Register from './Register';
 import Home from './Home';
+import Subject from './Subject'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 
@@ -17,6 +18,19 @@ const BottomTransition = (index, position, height) => {
   }
 }
 
+const LeftTransition = (index, position, width) => {
+  const screenRange = [index - 1, index, index + 1];
+  const outputWidth = [width, 0, 0];
+  const transition = position.interpolate({
+    inputRange: screenRange,
+    outputRange: outputWidth,
+  });
+
+  return {
+    transform: [{ translateX: transition }]
+  }
+}
+
 const NavigationConfig = () => {
   return{
     screenInterpolator: (sceneProps) => {
@@ -24,8 +38,9 @@ const NavigationConfig = () => {
       const scene = sceneProps.scene;
       const index = scene.index;
       const height = sceneProps.layout.initHeight;
+      const width = sceneProps.layout.initWidth;
 
-      return BottomTransition(index, position, height);
+      return LeftTransition(index, position, width);
     }
   }
 }
@@ -38,6 +53,7 @@ const Nav = createStackNavigator(
     Welcome: Welcome,
     Register: Register,
     Home: Home,
+    Subject: Subject,
   },
   {
   // "Home screen" / On start - first screen

@@ -28,7 +28,7 @@ export class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {name: null,
-                  user: null};
+                  newestID: null};
   }
 
   async componentDidMount() {
@@ -88,17 +88,10 @@ export class Register extends React.Component {
 
           <Image source = {require('../img/felix-2.png')} style={styles.felix2} />          
           <TouchableOpacity 
-            style={[styles.letsGo]} 
-            onPress={() => [
-              this.add(this.state.name),
-              // calling add function           
-              this.setState({name: null}),
-              // setting the this.state.name back to null
-              this.props.navigation.navigate('Home'),
-              // navigating to next screen - Home
-              ToastAndroid.show('Please provide me with\nat least two characters', ToastAndroid.SHORT)]
-            }>
-          <Text style={[styles.heading, styles.headingReg]}>Go</Text>
+            style={[styles.go]} 
+            onPress={() => this.pressed(this.state.name)}>
+          <Text style={[styles.heading, styles.goHeading]}>GO</Text>
+          <Text style={[styles.heading, styles.goHeading, styles.orange, styles.specialRot]}>GO</Text>
           </TouchableOpacity>
         </View>
 
@@ -118,7 +111,7 @@ export class Register extends React.Component {
         // adding into database
           'INSERT INTO user (name) values (?);',
           [text],
-          (txn, res) => console.log("New entry id(on press): " + res.insertId)
+          (txn, res) => {console.log("New entry id(on press): " + res.insertId); this.state.newestID = res.insertId}
         );
         tx.executeSql(
         // selecting whole table and outputting to console
@@ -128,5 +121,20 @@ export class Register extends React.Component {
         );
       });
   }
+
+  pressed(text){
+    if(text && text.length >= 2){
+    // checking if there is input and whether it is longer than 2 chars
+      this.add(text);
+      // calling add function           
+      this.setState({name: null});
+      // setting the this.state.name back to null
+      this.props.navigation.navigate('Home', { ID: this.state.newestID});
+      // navigating to next screen - Home
+    } else {
+      ToastAndroid.show('Please provide me with\nat least two characters!', ToastAndroid.SHORT);
+    }
+  }
+
 }
 export default Register;

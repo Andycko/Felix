@@ -41,8 +41,8 @@ export class Welcome extends React.Component {
     this.setState({fontLoaded: true });
     // if get to this point, font is loaded -> set state to true
   }
-  render() {
 
+  render() {
     return (
       <View style={styles.container}>
       {
@@ -55,15 +55,13 @@ export class Welcome extends React.Component {
           <Text style={styles.heading}>I'm <Text style={styles.dif}>Felix</Text></Text>
 
           <Text style={styles.text}>I'd like to tell you something about wireless security</Text>
-          <Image source={require('../img/rect.png')} style={styles.rect} />
+          <View style={styles.rectangleWelcome}></View>
 
-          <View style={styles.imgWrap}>
-            <Image source = {require('../img/felix-1.png')} style={styles.felix} />
-          </View>
-
-          <Image source = {require('../img/circle.png')} style={styles.circle} />
+          <Image source = {require('../img/felix-1.png')} style={styles.felix} />
+          
           <TouchableOpacity style={[styles.letsGo]} onPress={ () => this.props.navigation.navigate('Register')}>
-            <Text style={[{textAlign: 'center'},styles.heading]}>Follow{'\n'}me</Text>
+            <Text style={[styles.heading, styles.letsGoHeading]}>Follow{'\n'}me</Text>
+            <View style={styles.circleWelcome}></View>
           </TouchableOpacity>
         </View>
 

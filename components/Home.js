@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Text,
   View,
+  ScrollView,
   TextInput,
   StatusBar,
   TouchableOpacity,
@@ -9,6 +10,11 @@ import {
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from 'react-native-responsive-screen';
+
 const db = SQLite.openDatabase('FelixDB.db')
 // opening the database as it has already been created
 
@@ -26,7 +32,8 @@ export class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {name: null};
+    this.state = {name: null,
+                  newestID: this.props.navigation.state.params.ID};
   }
 
   async componentDidMount() {
@@ -47,7 +54,7 @@ export class Home extends React.Component {
       tx.executeSql(
         'SELECT name FROM user WHERE id = ?',
         // selecting existing user name
-        [1],
+        [this.state.newestID + 1],
         (txn, res) => [this.setState({ name: JSON.stringify(Object.values(res.rows._array[0]).toString()) }),
                        this.setState({ name: this.state.name.substring(1, this.state.name.length - 1) })],
                       //get the array of objects, stringify it, pick just the first object and convert it to String
@@ -62,12 +69,12 @@ export class Home extends React.Component {
   render() {
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container]}>
       {
         this.state.fontLoaded ? (
         // check if font is loaded (depending on the state)
 
-        <View style={[styles.wrap, styles.center]}>
+        <View style={[styles.wrap, styles.wrapHome, styles.center]}>
           <StatusBar hidden/>
           <Text style={[styles.heading, styles.headHome]}>
             Welcome <Text style={styles.orange}>{this.state.name}</Text>
@@ -77,26 +84,60 @@ export class Home extends React.Component {
             <Text style={[styles.subHeading, styles.left]}>Please pick one of these</Text>
           </View>
           
-          <View style={[styles.right, styles.subHeadWrap]}>
+          <View style={[styles.right, styles.subHeadWrap, styles.margBot]}>
             <Text style={[styles.subHeading, styles.right]}>subjects to start learning</Text>
           </View>
 
-          <View style={[styles.subjectWrapLeft, styles.margTop]}>
-            <Text style={[styles.subjectText]}>Basic vocabulary</Text>
-          </View>
-          
-          <View style={[styles.subjectWrapRight]}>
-            <Text style={[styles.subjectText]}>Wireless Security{'\n'}Mindset</Text>
-          </View>
+          <ScrollView contentContainerStyle={[styles.scrollWrap, styles.center]}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Basic vocabulary'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap1]}>
+                <Text style={[styles.subjectText]}>Basic vocabulary</Text>
+              </View>
+            </TouchableOpacity>
 
-          <View style={[styles.subjectWrapLeft]}>
-            <Text style={[styles.subjectText]}>Authentication protocols</Text>
-          </View>
-          
-          <View style={[styles.subjectWrapRight]}>
-            <Text style={[styles.subjectText]}>Types of attacks &{'\n'}how to prevent them</Text>
-          </View>
-          
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Wireless security\nmindset'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap2]}>
+                <Text style={[styles.subjectText]}>Wireless Security{'\n'}Mindset</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Authentication protocols'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap1]}>
+                <Text style={[styles.subjectText]}>Authentication protocols</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Types of attacks &\nhow to prevent them'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap2]}>
+                <Text style={[styles.subjectText]}>Types of attacks &{'\n'}how to prevent them</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Basic vocabulary'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap1]}>
+                <Text style={[styles.subjectText]}>Basic vocabulary</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Wireless security\nmindset'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap2]}>
+                <Text style={[styles.subjectText]}>Wireless Security{'\n'}Mindset</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Authentication protocols'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap1]}>
+                <Text style={[styles.subjectText]}>Authentication protocols</Text>
+              </View>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Types of attacks &\nhow to prevent them'})}>
+              <View style={[styles.subjectWrap, styles.subjectWrap2]}>
+                <Text style={[styles.subjectText]}>Types of attacks &{'\n'}how to prevent them</Text>
+              </View>
+            </TouchableOpacity>
+
+          </ScrollView>
         </View>
 
         ) : null
