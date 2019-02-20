@@ -91,45 +91,27 @@ export class Home extends React.Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Wireless security\nmindset'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject2',{name: 'Wireless security\nmindset'})}>
               <View style={[styles.subjectWrap, styles.subjectWrap2]}>
                 <Text style={[styles.subjectText]}>Wireless Security{'\n'}Mindset</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Authentication protocols'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject3',{name: 'Authentication protocols'})}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
                 <Text style={[styles.subjectText]}>Authentication protocols</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Types of attacks &\nhow to prevent them'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject4',{name: 'Types of attacks &\nhow to prevent them'})}>
               <View style={[styles.subjectWrap, styles.subjectWrap2]}>
                 <Text style={[styles.subjectText]}>Types of attacks &{'\n'}how to prevent them</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Basic vocabulary'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject5',{name: 'Basic vocabulary'})}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
                 <Text style={[styles.subjectText]}>Basic vocabulary</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Wireless security\nmindset'})}>
-              <View style={[styles.subjectWrap, styles.subjectWrap2]}>
-                <Text style={[styles.subjectText]}>Wireless Security{'\n'}Mindset</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Authentication protocols'})}>
-              <View style={[styles.subjectWrap, styles.subjectWrap1]}>
-                <Text style={[styles.subjectText]}>Authentication protocols</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Types of attacks &\nhow to prevent them'})}>
-              <View style={[styles.subjectWrap, styles.subjectWrap2]}>
-                <Text style={[styles.subjectText]}>Types of attacks &{'\n'}how to prevent them</Text>
               </View>
             </TouchableOpacity>
 

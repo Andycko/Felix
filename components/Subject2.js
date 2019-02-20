@@ -18,7 +18,7 @@ class Bold extends React.Component {
   }
 }
 
-export class Subject extends React.Component {
+export class Subject2 extends React.Component {
   
   static navigationOptions = {
     header: null
@@ -66,7 +66,7 @@ export class Subject extends React.Component {
         <View style={[styles.wrap, styles.wrapSubject, styles.center]}>
           <StatusBar hidden/>
 
-          <Text style={[styles.heading, styles.headSub]}>Basic Vocabulary</Text>
+          <Text style={[styles.heading, styles.headSub]}>Basic Vocabulary2</Text>
           <View style={styles.rectangleSub}></View>
           <ScrollView contentContainerStyle={styles.scrollText} showsVerticalScrollIndicator={false} style={[styles.wrapSub]}>
             {this.state.learning ?
@@ -204,4 +204,4 @@ export class Subject extends React.Component {
 
 };
 
-export default Subject;
+export default Subject2;

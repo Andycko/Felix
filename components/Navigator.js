@@ -2,6 +2,10 @@ import Welcome from './Welcome';
 import Register from './Register';
 import Home from './Home';
 import Subject from './Subject'
+import Subject2 from './Subject2'
+import Subject3 from './Subject3'
+import Subject4 from './Subject4'
+import Subject5 from './Subject5'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 
@@ -54,6 +58,10 @@ const Nav = createStackNavigator(
     Register: Register,
     Home: Home,
     Subject: Subject,
+    Subject2: Subject2,
+    Subject3: Subject3,
+    Subject4: Subject4,
+    Subject5: Subject5,
   },
   {
   // "Home screen" / On start - first screen
