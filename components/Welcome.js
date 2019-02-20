@@ -58,7 +58,7 @@ export class Welcome extends React.Component {
           <View style={styles.rectangleWelcome}></View>
 
           <Image source = {require('../img/felix-1.png')} style={styles.felix} />
-          
+
           <TouchableOpacity style={[styles.letsGo]} onPress={ () => this.props.navigation.navigate('Register')}>
             <Text style={[styles.heading, styles.letsGoHeading]}>Follow{'\n'}me</Text>
             <View style={styles.circleWelcome}></View>

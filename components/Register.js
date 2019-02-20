@@ -82,7 +82,7 @@ export class Register extends React.Component {
               style= {styles.inputName}
               placeholder= 'Your name here'
               onChangeText= {(name) => this.setState({name})}
-              autoGrow = 'true'
+              autoGrow = 'false'
             />
           </View>
 

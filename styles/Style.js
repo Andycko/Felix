@@ -148,12 +148,12 @@ export default StyleSheet.create({
   // Screen Home - COUNTINUE HERE!
 
   wrapHome: {
-    paddingRight: 0,
-    paddingLeft: 0,
+    paddingRight: wp('1.5%'),
+    paddingLeft: wp('1.5%'),
     paddingTop: hp('7%')
   },
   headHome: {
-    fontSize: hp('7%'),
+    fontSize: hp('6.8%'),
     marginBottom: hp('1%'),
   },
   subHeading: {
@@ -228,6 +228,11 @@ export default StyleSheet.create({
     fontSize: hp('3%'),
     color: 'white',
   },
+  curricHeading: {
+    fontSize: hp('4%'),
+    fontFamily: 'raleway-medium',
+    color: 'rgba(255,255,255,0.9)',
+  },
   testBtn: {
     marginTop: hp('2%'),
     paddingTop: hp('1.5%'),
@@ -244,4 +249,75 @@ export default StyleSheet.create({
     color: 'white',
     textAlign: 'center'
   },
+  pagerView:{
+    width: wp('95%'),
+    // height: hp('68%'),
+    height: hp('55%'),
+  },
+  questView: {
+    paddingLeft: hp('2.5%'),
+    paddingRight: hp('2.5%'),
+  },
+  testTitle: {
+    fontSize: hp('6%'),
+    color: 'white',
+    marginBottom: hp('3%'),
+    fontFamily: 'raleway-extrabold', 
+  },
+  testQuestNum: {
+    fontFamily: 'raleway-bold',
+    fontSize: hp('6%'),
+  },
+  testQuest: {
+    fontSize: hp('5%'),
+    marginBottom: hp('3%'),
+    fontFamily: 'raleway-medium',
+    color: 'white' 
+  },
+  testAnswear:{
+    fontSize: hp('3.8%'),
+    fontFamily: 'raleway-regular', 
+    color: 'white',
+  },
+  testQuestBox: {
+    paddingTop: hp('1.5%'),
+    paddingBottom: hp('1.5%'),
+    width: wp('65%'),
+    backgroundColor: 'rgba(42,157,143,0.4)',
+    borderWidth: 2,
+    borderColor: '#F0803C',
+    borderStyle: 'solid',
+    borderRadius: 30,
+    marginBottom: hp('3%'),
+    elevation: 7,  
+  },
+  testQuestBoxWrong: {
+    paddingTop: hp('1.5%'),
+    paddingBottom: hp('1.5%'),
+    width: wp('65%'),
+    backgroundColor: 'rgba(42,157,143,0.4)',
+    borderWidth: 2,
+    borderColor: 'red',
+    borderStyle: 'solid',
+    borderRadius: 30,
+    marginBottom: hp('3%'),
+    elevation: 7,  
+
+  },
+  testBackBtn: {
+    marginTop: hp('4%'),
+    paddingTop: hp('1.5%'),
+    paddingBottom: hp('1.5%'),
+    paddingLeft: hp('1.5%'),
+    paddingRight: hp('1.5%'),
+    backgroundColor: '#EA8A64',
+    borderRadius: 50,
+    elevation: 2,  
+  },
+  testBackBtnTitle: {
+    fontFamily: 'raleway-regular',
+    fontSize: hp('4%'),
+    color: 'white',
+    textAlign: 'center'
+  }
  });

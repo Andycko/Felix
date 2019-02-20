@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "Felix-real",
-    "description": "This project is really great.",
-    "slug": "Felix-real",
+    "name": "Felix",
+    "description": "Your best teacher of wireless security.",
+    "slug": "Felix",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/customIcon1.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/customSplash1.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#225560"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,7 +21,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "sk.andy.felix"
+    },
+    "android": {
+      "package": "sk.andy.felix"
+    }    
   }
 }
+
+

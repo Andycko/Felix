@@ -8,11 +8,20 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  ViewPagerAndroid
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
 const db = SQLite.openDatabase('FelixDB.db')
 // opening the database as it has already been created
+
+class Bold extends React.Component {
+  render(){
+    return(
+      <Text style={{fontFamily: 'raleway-medium'}}>{this.props.content}</Text>
+    )
+  }
+}
 
 export class Home extends React.Component {
   
@@ -29,7 +38,17 @@ export class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {name: this.props.navigation.state.params.name,
-                  learning: true};
+                  learning: true,
+                  toPage: 1,
+                  wasPressed: [false, false, false, false, false, false, false]};
+  }
+
+  _onHideUnderlay() {
+    this.setState({ wasPressed: false });
+  }
+
+  _onShowUnderlay() {
+    this.setState({ wasPressed: true });
   }
 
   async componentDidMount() {
@@ -66,33 +85,118 @@ export class Home extends React.Component {
             {this.state.learning ?
             <View>
               <Text style={[styles.textSub]}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Molestiae rem praesentium illo aperiam dicta nostrum aliquid odio, 
-                omnis necessitatibus amet optio nihil qui dolor saepe?{'\n'}{'\n'}
+                <Text style={[styles.curricHeading]}>SSID, BSSID, MAC{'\n'}{'\n'}</Text>
+                The <Bold content='SSID'/>, <Bold content='BSSID'/> and <Bold content='ESSID'/> address are all essential unique identifiers for a wireless
+                network.{'\n'}
+                <Bold content='The Service Set Identifier (SSID)'/> is the human readable name associated with an
+                802.11 wireless network. It is often called the wireless “network name” and can be shared
+                by multiple access points{'\n'}
+                <Bold content='The Basic Service Set Identifier (BSSID)'/> uniquely identifies a
+                specific access point and is in the same format as a MAC address; thus, most commonly, it
+                is the MAC address of the access point.{'\n'}
+                <Bold content='The Extended Service Set Identifier (ESSID)'/> can
+                essentially be thought of as a group of BSSIDs that share the same Layer 2 network and
+                the same SSID.{'\n'}{'\n'}
 
-                Libero nisi illum consequatur dolor voluptatibus debitis inventore cum laboriosam, autem, accusantium quam?
-                Incidunt rerum enim eveniet culpa autem praesentium delectus pariatur iure iste aut!{'\n'}{'\n'}
+                <Text style={[styles.curricHeading]}>Beacons and Broadcasts{'\n'}{'\n'}</Text>
+                Access points send out beacons, which are radio broadcasts that advertise the wireless
+                settings for a specific BSSID. These settings typically contain the SSID, encryption
+                method, and so on.{'\n'}{'\n'}
 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Molestiae rem praesentium illo aperiam dicta nostrum aliquid odio, 
-                omnis necessitatibus amet optio nihil qui dolor saepe?{'\n'}{'\n'}
+                <Text style={[styles.curricHeading]}>Associating and Authenticating{'\n'}{'\n'}</Text>
+                Association and authentication are performed by clients when they want to join a wireless
+                network. Associating to an access point means that your client and the access point have
+                “agreed upon” which parameters to use to ensure proper communication. Authentication is
+                a way of verifying that you are authorized to connect to the network. There are multiple
+                methods of authentication, and authentication happens prior to association.{'\n'}{'\n'}
 
-                Libero nisi illum consequatur dolor voluptatibus debitis inventore cum laboriosam, autem, accusantium quam?
-                Incidunt rerum enim eveniet culpa autem praesentium delectus pariatur iure iste aut!{'\n'}{'\n'}
-
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Molestiae rem praesentium illo aperiam dicta nostrum aliquid odio, 
-                omnis necessitatibus amet optio nihil qui dolor saepe?{'\n'}{'\n'}
-
-                Libero nisi illum consequatur dolor voluptatibus debitis inventore cum laboriosam, autem, accusantium quam?
-                Incidunt rerum enim eveniet culpa autem praesentium delectus pariatur iure iste aut!
+                <Text style={[styles.curricHeading]}>Encryption{'\n'}{'\n'}</Text>
+                Encryption is utilized just as it is in any other technology. It obscures the data so that
+                only “authorized” people can view the actual data. You have many different choices for
+                encrypting network data; some are new implementations created for wireless technologies,
+                and others have been around for a while.
+                
               </Text>
               <TouchableOpacity style={[styles.testBtn]} onPress={() => {this.setState({learning: false})}}><Text style={[styles.titleTestBtn]}>Test yourself</Text></TouchableOpacity>
             </View>
             :
-            <View>
-              <Text>Tu bude test</Text>
-            </View>
+            <View style={[styles.center]}>
+              <Text style={[styles.testTitle]}>Enjoy!</Text>
+              <ViewPagerAndroid style={[styles.pagerView]} initialPage={0} scrollEnabled={false} ref={viewPager => { this.viewPager = viewPager; }}>
+                
+                <View style={[styles.center, styles.questView]} key="1">  
+                  <Text style={[styles.testQuest]}><Text style={[styles.testQuestNum, styles.orange]}>1) </Text>SSID is The __ Identifier?</Text>
+                  
+                  <TouchableOpacity style={this.state.wasPressed[0] ? [styles.testQuestBoxWrong, styles.center] : [styles.testQuestBox, styles.center]} 
+                    onPress={() => {this.setState({wasPressed: [true]})}}
+                  >
+                    <Text style={[styles.testAnswear]}>Secret Service</Text>
+                  </TouchableOpacity>
+              
+                  <TouchableOpacity style={this.state.wasPressed[1] ? [styles.testQuestBoxWrong, styles.center] : [styles.testQuestBox, styles.center]} 
+                    onPress={() => {this.setState({wasPressed: [,true]})}}
+                  >
+                    <Text style={[styles.testAnswear]}>Secret Set</Text>
+                  </TouchableOpacity>
+              
+                  <TouchableOpacity style={[styles.testQuestBox, styles.center]} onPress={() => this.scrollToNext()}>
+                    <Text style={[styles.testAnswear]}>Service Set</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={this.state.wasPressed[2] ? [styles.testQuestBoxWrong, styles.center] : [styles.testQuestBox, styles.center]} 
+                    onPress={() => {this.setState({wasPressed: [,,true]})}}
+                  >
+                    <Text style={[styles.testAnswear]}>Service Secret</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={[styles.center, styles.questView]}key="2">  
+                  <Text style={[styles.testQuest]}><Text style={[styles.testQuestNum, styles.orange]}>2) </Text>Beacons usually contain passwords.</Text>
+
+                  <TouchableOpacity style={this.state.wasPressed[3] ? [styles.testQuestBoxWrong, styles.center] : [styles.testQuestBox, styles.center]} 
+                    onPress={() => {this.setState({wasPressed: [,,,true]})}}
+                  >
+                    <Text style={[styles.testAnswear]}>True</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={[styles.testQuestBox, styles.center]} onPress={() => this.scrollToNext()}>
+                    <Text style={[styles.testAnswear]}>False</Text>
+                  </TouchableOpacity>
+                  
+                  <TouchableOpacity style={this.state.wasPressed[4] ? [styles.testQuestBoxWrong, styles.center] : [styles.testQuestBox, styles.center]} 
+                    onPress={() => {this.setState({wasPressed: [,,,,true]})}}
+                  >
+                    <Text style={[styles.testAnswear]}>Sometimes</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={[styles.center, styles.questView]}key="3">  
+                  <Text style={[styles.testQuest]}><Text style={[styles.testQuestNum, styles.orange]}>3) </Text>Authentication happens prior to association.</Text>
+
+                  <TouchableOpacity style={[styles.testQuestBox, styles.center]} onPress={() => this.scrollToNext()}>
+                    <Text style={[styles.testAnswear]}>True</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={this.state.wasPressed[5] ? [styles.testQuestBoxWrong, styles.center] : [styles.testQuestBox, styles.center]} 
+                    onPress={() => {this.setState({wasPressed: [,,,,,true]})}}
+                  >
+                    <Text style={[styles.testAnswear]}>False</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={this.state.wasPressed[6] ? [styles.testQuestBoxWrong, styles.center] : [styles.testQuestBox, styles.center]} 
+                    onPress={() => {this.setState({wasPressed: [,,,,,,true]})}}
+                  >
+                    <Text style={[styles.testAnswear]}>Sometimes</Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={[styles.center, styles.questView]} key="4">
+                  <TouchableOpacity style={[styles.testBackBtn]} onPress={() => {this.setState({learning: true})}}>
+                    <Text style={[styles.testBackBtnTitle]}>Get back to learning!</Text>
+                  </TouchableOpacity>
+                </View>
+              </ViewPagerAndroid>
+              </View>
             }
           </ScrollView>
         </View>
@@ -102,7 +206,17 @@ export class Home extends React.Component {
       }
       </View>
     );
+  }
 
+  scrollToNext(){
+    const page = this.state.toPage;
+
+    this.setState({toPage: page + 1});
+    this.viewPager.setPage(page);
+  }
+
+  wrongAnswer(){
+    
   }
 
 };

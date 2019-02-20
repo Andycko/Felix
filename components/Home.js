@@ -10,10 +10,6 @@ import {
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp
-} from 'react-native-responsive-screen';
 
 const db = SQLite.openDatabase('FelixDB.db')
 // opening the database as it has already been created
@@ -76,8 +72,8 @@ export class Home extends React.Component {
 
         <View style={[styles.wrap, styles.wrapHome, styles.center]}>
           <StatusBar hidden/>
-          <Text style={[styles.heading, styles.headHome]}>
-            Welcome <Text style={styles.orange}>{this.state.name}</Text>
+          <Text style={[styles.heading, styles.headHome]} numberOfLines={1}>
+            Welcome <Text style={[styles.orange]}>{this.state.name}</Text>
           </Text>
 
           <View style={[styles.left, styles.subHeadWrap]}>
