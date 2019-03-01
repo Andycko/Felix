@@ -2,10 +2,96 @@
 
 !!!!DOCUMENTATION!!!!
 
-Implement Subject 3-5 curriculums
-
-Create tests for Subject 2-5
-
-?Maybe add a new Subject?
+?Maybe add a new Subject (WPA2 Enterprise)?
 
 Dont forget to implement authentication flow with createSwitchNavigator --> https://reactnavigation.org/docs/en/auth-flow.html
+
+
+
+
+import Welcome from './Welcome';
+import Register from './Register';
+import Home from './Home';
+import Subject from './Subject'
+import Subject2 from './Subject2'
+import Subject3 from './Subject3'
+import Subject4 from './Subject4'
+import Subject5 from './Subject5'
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
+
+
+const LeftTransition = (index, position, width) => {
+  const screenRange = [index - 1, index, index + 1];
+  const outputWidth = [width, 0, 0];
+  const transition = position.interpolate({
+    inputRange: screenRange,
+    outputRange: outputWidth,
+  });
+
+  return {
+    transform: [{ translateX: transition }]
+  }
+}
+
+const NavigationConfig = () => {
+  return{
+    screenInterpolator: (sceneProps) => {
+      const position = sceneProps.position;
+      const scene = sceneProps.scene;
+      const index = scene.index;
+      const width = sceneProps.layout.initWidth;
+
+      return LeftTransition(index, position, width);
+    }
+  }
+}
+
+
+const SignedOut = createStackNavigator(
+// creating a navigator stack
+  {
+  // assigning names to different components
+    Welcome: Welcome,
+    Register: Register,
+  },
+  {
+  // "Home screen" / On start - first screen
+    initialRouteName: 'Welcome',
+    transitionConfig: NavigationConfig,
+  }
+);
+
+const SignedIn = createStackNavigator(
+  // creating a navigator stack
+    {
+    // assigning names to different components
+      Home: Home,
+      Subject: Subject,
+      Subject2: Subject2,
+      Subject3: Subject3,
+      Subject4: Subject4,
+      Subject5: Subject5,
+    },
+    {
+    // "Home screen" / On start - first screen
+      initialRouteName: 'Home',
+      transitionConfig: NavigationConfig,
+    }
+  );
+
+export const createRootNavigator = (signedIn = false) => {
+  return createSwitchNavigator(
+    {
+      SignedIn: SignedIn,
+      SignedOut: SignedOut
+    },
+    {
+      initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+    }
+  );
+}
+
+// const Navigator = createAppContainer(Nav);
+// creating a "element" from navigator, so it can be used in App.js
+
+export default Navigator;

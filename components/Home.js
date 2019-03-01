@@ -99,19 +99,19 @@ export class Home extends React.Component {
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject3')}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
-                <Text style={[styles.subjectText]}>How WEP works?</Text>
+                <Text style={[styles.subjectText]}>Encryption</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject4')}>
               <View style={[styles.subjectWrap, styles.subjectWrap2]}>
-                <Text style={[styles.subjectText]}>How WPA works?</Text>
+                <Text style={[styles.subjectText]}>How WEP works?</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject5')}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
-                <Text style={[styles.subjectText]}>Attacks</Text>
+                <Text style={[styles.subjectText]}>How WPA works?</Text>
               </View>
             </TouchableOpacity>
 

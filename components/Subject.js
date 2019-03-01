@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   ScrollView,
   ViewPagerAndroid,
-  Image
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
@@ -123,7 +122,7 @@ export class Subject extends React.Component {
                 Encryption is utilized just as it is in any other technology. It obscures the data so that
                 only “authorized” people can view the actual data. You have many different choices for
                 encrypting network data; some are new implementations created for wireless technologies,
-                and others have been around for a while.
+                and others have been around for a while. (More about Encryption in Chapter 3)
                 
               </Text>
               <TouchableOpacity style={[styles.testBtn]} onPress={() => {this.setState({learning: false})}}>

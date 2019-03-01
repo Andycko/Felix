@@ -125,7 +125,7 @@ export default StyleSheet.create({
     left: hp('4%'),
     height: hp('40%'),
     width: wp('40%'),
-    resizeMode: 'contain'
+    resizeMode: 'contain',
   },
   go: {
     display: 'flex',
@@ -233,6 +233,10 @@ export default StyleSheet.create({
     fontFamily: 'raleway-medium',
     color: 'rgba(255,255,255,0.9)',
   },
+  curricFootNote: {
+    color: 'rgba(255,255,255,0.7)',
+    fontSize: hp('2.5%')
+  },
   table: {
     borderTopWidth: 3,
     borderBottomWidth: 3,
@@ -246,6 +250,9 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignSelf: "stretch",
+    paddingLeft: wp('2%'),
+    paddingRight: wp('2%'),
+    marginBottom: 5
   },
   rowItem: {
     flex: 1,
@@ -260,6 +267,17 @@ export default StyleSheet.create({
     fontFamily: 'raleway-light',
     fontSize: hp('2%'),
     color: 'white',
+  },
+  codeText: {
+    fontFamily: 'courier',
+    fontSize: hp('2.5%')
+  },
+  inlineImg: {
+    resizeMode: 'contain',
+    flex: 1,
+    alignSelf: 'center',
+    height: hp('30%'),
+    marginBottom: hp('3%')
   },
   testBtn: {
     marginTop: hp('2%'),
@@ -281,7 +299,7 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: hp('6%'),
+    marginBottom: hp('5%'),
   },
   testHeadBackBtn: {
     flex: 1,
@@ -322,6 +340,7 @@ export default StyleSheet.create({
     fontSize: hp('3.2%'),
     fontFamily: 'raleway-regular', 
     color: 'white',
+    textAlign: 'center'
   },
   testQuestBox: {
     paddingTop: hp('1.5%'),
