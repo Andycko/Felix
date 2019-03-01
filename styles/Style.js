@@ -233,6 +233,34 @@ export default StyleSheet.create({
     fontFamily: 'raleway-medium',
     color: 'rgba(255,255,255,0.9)',
   },
+  table: {
+    borderTopWidth: 3,
+    borderBottomWidth: 3,
+    borderColor: '#F0803C',
+    borderStyle: 'dotted',
+    borderRadius: 10,
+    paddingTop: hp('2%'),
+    paddingBottom: hp('2%')
+  },
+  row: {
+    flex: 1,
+    flexDirection: "row",
+    alignSelf: "stretch",
+  },
+  rowItem: {
+    flex: 1,
+    alignSelf: "stretch",
+  },
+  rowItemHead: {
+    fontFamily: 'raleway-medium',
+    fontSize: hp('2.1%'),
+    color: 'white',
+  },
+  rowItemContent: {
+    fontFamily: 'raleway-light',
+    fontSize: hp('2%'),
+    color: 'white',
+  },
   testBtn: {
     marginTop: hp('2%'),
     paddingTop: hp('1.5%'),
@@ -249,33 +277,49 @@ export default StyleSheet.create({
     color: 'white',
     textAlign: 'center'
   },
+  testHead: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: hp('6%'),
+  },
+  testHeadBackBtn: {
+    flex: 1,
+  },
+  testHeadTitle: {
+    flex: 1,
+  },
+  testHeadTitleText: {
+    fontSize: hp('6%'),
+    color: 'white',
+    fontFamily: 'raleway-extrabold', 
+    textAlign: 'center'
+  },
+  testHeadQuest: {
+    flex: 1,
+    fontSize: hp('5.5%'),
+    color: 'white',
+    fontFamily: 'raleway-bold', 
+    textAlign: 'right',
+  },
   pagerView:{
     width: wp('95%'),
-    // height: hp('68%'),
-    height: hp('55%'),
+    height: hp('65%'),
   },
   questView: {
     paddingLeft: hp('2.5%'),
     paddingRight: hp('2.5%'),
   },
-  testTitle: {
-    fontSize: hp('6%'),
-    color: 'white',
-    marginBottom: hp('3%'),
-    fontFamily: 'raleway-extrabold', 
-  },
-  testQuestNum: {
-    fontFamily: 'raleway-bold',
-    fontSize: hp('6%'),
-  },
   testQuest: {
-    fontSize: hp('5%'),
+    fontSize: hp('4%'),
     marginBottom: hp('3%'),
-    fontFamily: 'raleway-medium',
-    color: 'white' 
+    fontFamily: 'raleway-semibold',
+    color: 'white' ,
+    textAlign: 'center',
+    marginBottom: hp('5%')
   },
   testAnswear:{
-    fontSize: hp('3.8%'),
+    fontSize: hp('3.2%'),
     fontFamily: 'raleway-regular', 
     color: 'white',
   },
@@ -291,6 +335,18 @@ export default StyleSheet.create({
     marginBottom: hp('3%'),
     elevation: 7,  
   },
+  testQuestBoxRight: {
+    paddingTop: hp('1.5%'),
+    paddingBottom: hp('1.5%'),
+    width: wp('65%'),
+    backgroundColor: 'rgba(42,157,143,0.4)',
+    borderWidth: 2,
+    borderColor: 'green',
+    borderStyle: 'solid',
+    borderRadius: 30,
+    marginBottom: hp('3%'),
+    elevation: 5,  
+  },
   testQuestBoxWrong: {
     paddingTop: hp('1.5%'),
     paddingBottom: hp('1.5%'),
@@ -302,9 +358,22 @@ export default StyleSheet.create({
     borderRadius: 30,
     marginBottom: hp('3%'),
     elevation: 7,  
-
   },
-  testBackBtn: {
+  goodResponseText: {
+    fontSize: hp('3%'),
+    fontFamily: 'raleway-semibold',
+    color: 'white' ,
+    textAlign: 'center',
+    marginTop: hp('5%')
+  },
+  badResponseText: {
+    fontSize: hp('3%'),
+    fontFamily: 'raleway-semibold',
+    color: 'white' ,
+    textAlign: 'center',
+    marginTop: hp('5%')
+  },
+  testUniversalBtn: {
     marginTop: hp('4%'),
     paddingTop: hp('1.5%'),
     paddingBottom: hp('1.5%'),
@@ -314,7 +383,18 @@ export default StyleSheet.create({
     borderRadius: 50,
     elevation: 2,  
   },
-  testBackBtnTitle: {
+  testUniversalBtnDisabled: {
+    marginTop: hp('4%'),
+    paddingTop: hp('1.5%'),
+    paddingBottom: hp('1.5%'),
+    paddingLeft: hp('1.5%'),
+    paddingRight: hp('1.5%'),
+    backgroundColor: '#EA8A64',
+    borderRadius: 50,
+    opacity: 0.3,
+    elevation: 2,  
+  },
+  testUniversalBtnTitle: {
     fontFamily: 'raleway-regular',
     fontSize: hp('4%'),
     color: 'white',

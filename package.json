@@ -16,6 +16,7 @@
     "react-native-pages": "^0.7.0",
     "react-native-responsive-screen": "^1.2.0",
     "react-navigation": "^3.0.9",
+    "react-navigation-backhandler": "^1.2.0",
     "realm": "^2.21.1"
   },
   "devDependencies": {

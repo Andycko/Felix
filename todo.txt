@@ -1,0 +1,11 @@
+
+
+!!!!DOCUMENTATION!!!!
+
+Implement Subject 3-5 curriculums
+
+Create tests for Subject 2-5
+
+?Maybe add a new Subject?
+
+Dont forget to implement authentication flow with createSwitchNavigator --> https://reactnavigation.org/docs/en/auth-flow.html

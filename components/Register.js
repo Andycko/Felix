@@ -123,12 +123,16 @@ export class Register extends React.Component {
   }
 
   pressed(text){
-    if(text && text.length >= 2){
+    if(text != null){
+      var space = text.indexOf(" ");
+    }else{
+      var space = -1
+    }
+
+    if(text && text.length >= 2 && space == -1){
     // checking if there is input and whether it is longer than 2 chars
       this.add(text);
-      // calling add function           
-      this.setState({name: null});
-      // setting the this.state.name back to null
+      // calling add function                
       this.props.navigation.navigate('Home', { ID: this.state.newestID});
       // navigating to next screen - Home
     } else {

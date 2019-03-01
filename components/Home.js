@@ -85,33 +85,33 @@ export class Home extends React.Component {
           </View>
 
           <ScrollView contentContainerStyle={[styles.scrollWrap, styles.center]}>
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject',{name: 'Basic vocabulary'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject')}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
                 <Text style={[styles.subjectText]}>Basic vocabulary</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject2',{name: 'Wireless security\nmindset'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject2')}>
               <View style={[styles.subjectWrap, styles.subjectWrap2]}>
-                <Text style={[styles.subjectText]}>Wireless Security{'\n'}Mindset</Text>
+                <Text style={[styles.subjectText]}>IEEE Standards</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject3',{name: 'Authentication protocols'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject3')}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
-                <Text style={[styles.subjectText]}>Authentication protocols</Text>
+                <Text style={[styles.subjectText]}>How WEP works?</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject4',{name: 'Types of attacks &\nhow to prevent them'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject4')}>
               <View style={[styles.subjectWrap, styles.subjectWrap2]}>
-                <Text style={[styles.subjectText]}>Types of attacks &{'\n'}how to prevent them</Text>
+                <Text style={[styles.subjectText]}>How WPA works?</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject5',{name: 'Basic vocabulary'})}>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('Subject5')}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
-                <Text style={[styles.subjectText]}>Basic vocabulary</Text>
+                <Text style={[styles.subjectText]}>Attacks</Text>
               </View>
             </TouchableOpacity>
 
