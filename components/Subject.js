@@ -8,7 +8,7 @@ import {
   ViewPagerAndroid,
 } from 'react-native';
 import styles from '../styles/Style';
-import { Font, SQLite } from 'expo';
+import { Font} from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import { AndroidBackHandler } from 'react-navigation-backhandler';
 
@@ -54,9 +54,9 @@ export class Subject extends React.Component {
   }
 
   onBackButtonPressAndroid = () => {
-      this.props.navigation.popToTop();
-      return true;
-  };
+      this.props.navigation.popToTop()
+      return true
+  }
 
   async componentDidMount() {
     await Font.loadAsync({

@@ -6,16 +6,15 @@ import {
   TouchableOpacity,
   ScrollView,
   ViewPagerAndroid,
-  Image
 } from 'react-native';
 import styles from '../styles/Style';
-import { Font, SQLite } from 'expo';
+import { Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
-
+import { AndroidBackHandler } from 'react-navigation-backhandler';
 
 class Bold extends React.Component {
   render(){
@@ -66,6 +65,11 @@ export class Subject4 extends React.Component {
                 })
   }
 
+  onBackButtonPressAndroid = () => {
+    this.props.navigation.popToTop()
+    return true
+  }
+
   async componentDidMount() {
     await Font.loadAsync({
     // loading font from files
@@ -94,7 +98,8 @@ export class Subject4 extends React.Component {
 
         <View style={[styles.wrap, styles.wrapSubject, styles.center]}>
           <StatusBar hidden/>
-
+          <AndroidBackHandler onBackPress={this.onBackButtonPressAndroid} />
+          
           <Text style={[styles.heading, styles.headSub]}>How WEP works?</Text>
           <View style={styles.rectangleSub}></View>
           <ScrollView contentContainerStyle={styles.scrollText} showsVerticalScrollIndicator={false} style={[styles.wrapSub]}>
