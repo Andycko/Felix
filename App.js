@@ -10,7 +10,6 @@ export default class App extends React.Component {
   
   isSigned = async () => {
     const userToken = await AsyncStorage.getItem('userToken');
-    console.log("Important get: " + userToken)
     return userToken;
   }
 

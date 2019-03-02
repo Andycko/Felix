@@ -10,9 +10,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import styles from '../styles/Style';
-import { Font, SQLite } from 'expo';
-const db = SQLite.openDatabase('FelixDB.db')
-// creating database
+import { Font } from 'expo';
 
 export class Register extends React.Component {
   
@@ -44,22 +42,7 @@ export class Register extends React.Component {
       'raleway-light': require('../assets/fonts/Raleway-Light.ttf'),
       'raleway-thin': require('../assets/fonts/Raleway-Thin.ttf'),
     });
-    
-  
-    await db.transaction(tx => {
-      tx.executeSql(
-      // droping user table if already exists
-        'DROP TABLE IF EXISTS user;',
-        [],
-      );
-      tx.executeSql(
-      // creating user table with id(primary key), name
-        'CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(20));',
-        [],
-        (txn, res) => console.log("Row count (create table): " + res.rows.length)
-      );
-    });
-  
+     
     this.setState({fontLoaded: true });
     // if get to this point, font is loaded -> set state to true
   }
@@ -104,25 +87,6 @@ export class Register extends React.Component {
 
   }
 
-  add(text) {
-  // function for adding into database
-    db.transaction(
-      tx => {
-        tx.executeSql(
-        // adding into database
-          'INSERT INTO user (name) values (?);',
-          [text],
-          (txn, res) => {console.log("New entry id(on press): " + res.insertId); this.state.newestID = res.insertId}
-        );
-        tx.executeSql(
-        // selecting whole table and outputting to console
-          'SELECT * FROM user',
-          [],
-          (txn, res) => console.log("Table user(on press): " + JSON.stringify(res.rows))
-        );
-      });
-  }
-  
   addName = async (text) => {
     try {
       await AsyncStorage.setItem('userToken', text);
@@ -141,10 +105,8 @@ export class Register extends React.Component {
     if(text && text.length >= 2 && space == -1){
     // checking if there is input and whether it is longer than 2 chars
       this.addName(text);
-
-      this.add(text);
-      // calling add function                
-      this.props.navigation.navigate('Home', { ID: this.state.newestID});
+      // adding the name to AsynchStorage
+      this.props.navigation.navigate('Home');
       // navigating to next screen - Home
     } else {
       ToastAndroid.show('Please provide me with\nat least two characters!', ToastAndroid.SHORT);

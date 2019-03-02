@@ -8,10 +8,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import styles from '../styles/Style';
-import { Font, SQLite } from 'expo';
-
-const db = SQLite.openDatabase('FelixDB.db')
-// opening the database as it has already been created
+import { Font } from 'expo';
 
 export class Home extends React.Component {
   
@@ -35,11 +32,11 @@ export class Home extends React.Component {
     const userToken = await AsyncStorage.getItem('userToken')
         this.setState({name: userToken});
   };
-
-  deauth = async() => {
-    await AsyncStorage.clear()
-    this.props.navigation.navigate("SignedOut");
-  };
+  //Just for debugging purposes
+  // deauth = async() => {
+  //   await AsyncStorage.clear()
+  //   this.props.navigation.navigate("SignedOut");
+  // };
 
 
   async componentDidMount() {
@@ -55,20 +52,6 @@ export class Home extends React.Component {
       'raleway-thin': require('../assets/fonts/Raleway-Thin.ttf'),
     });
     
-    // await this.loadName();
-  
-    // await db.transaction(tx => {
-    //   tx.executeSql(
-    //     'SELECT name FROM user WHERE id = ?',
-    //     // selecting existing user name
-    //     [1],
-    //     (txn, res) => [this.setState({ name: JSON.stringify(Object.values(res.rows._array[0]).toString()) }),
-    //                    this.setState({ name: this.state.name.substring(1, this.state.name.length - 1) })],
-    //                   //get the array of objects, stringify it, pick just the first object and convert it to String
-    //     () => console.log("nemmegy baratom")
-    //   );
-    // });
-  
     this.setState({fontLoaded: true });
     // if get to this point, font is loaded -> set state to true
   }
@@ -125,12 +108,13 @@ export class Home extends React.Component {
                 <Text style={[styles.subjectText]}>How WPA works?</Text>
               </View>
             </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.deauth()}>
+            
+            {/* Just for debugging purposes*/}
+            {/* <TouchableOpacity onPress={() => this.deauth()}>
               <View style={[styles.subjectWrap, styles.subjectWrap1]}>
                 <Text style={[styles.subjectText]}>How WPA works?</Text>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
           </ScrollView>
         </View>

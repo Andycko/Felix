@@ -6,7 +6,6 @@ import Subject2 from './Subject2'
 import Subject3 from './Subject3'
 import Subject4 from './Subject4'
 import Subject5 from './Subject5'
-import { loadApp } from './Auth.js'
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 const BottomTransition = (index, position, height) => {
