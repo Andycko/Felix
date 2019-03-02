@@ -1,15 +1,10 @@
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
-  TextInput,
-  ScrollView,
   StatusBar,
   TouchableOpacity,
   Image,
-  Dimensions,
-  TouchableHighlight,
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font } from 'expo';

@@ -1,11 +1,30 @@
 import React from 'react';
-import Navigator from './components/Navigator.js'
+import { AsyncStorage, View } from 'react-native';
+import { Navigator, NavigatorNew } from './components/Navigator';
 
 export default class App extends React.Component {
+  constructor(){
+    super()
+    this.state = {user: null}
+  }
+  
+  isSigned = async () => {
+    const userToken = await AsyncStorage.getItem('userToken');
+    console.log("Important get: " + userToken)
+    return userToken;
+  }
+
+  componentDidMount(){
+    this.isSigned()
+      .then(res => this.setState({user: res}))
+  }
+
   render() {
-    return (
-      <Navigator />
-      // Navigator placed in Navigator.js contains all the paths to different components
-    )
+    if(this.state.user != null) { 
+      return <NavigatorNew />
+    }else{
+      return <Navigator />
+    }
   }
 }
+

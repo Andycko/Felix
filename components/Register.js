@@ -6,7 +6,8 @@ import {
   StatusBar,
   TouchableOpacity,
   Image,
-  ToastAndroid
+  ToastAndroid,
+  AsyncStorage
 } from 'react-native';
 import styles from '../styles/Style';
 import { Font, SQLite } from 'expo';
@@ -121,7 +122,15 @@ export class Register extends React.Component {
         );
       });
   }
-
+  
+  addName = async (text) => {
+    try {
+      await AsyncStorage.setItem('userToken', text);
+    } catch (error) {
+      // Error saving data
+    }
+  }
+  
   pressed(text){
     if(text != null){
       var space = text.indexOf(" ");
@@ -131,6 +140,8 @@ export class Register extends React.Component {
 
     if(text && text.length >= 2 && space == -1){
     // checking if there is input and whether it is longer than 2 chars
+      this.addName(text);
+
       this.add(text);
       // calling add function                
       this.props.navigation.navigate('Home', { ID: this.state.newestID});
@@ -139,6 +150,7 @@ export class Register extends React.Component {
       ToastAndroid.show('Please provide me with\nat least two characters!', ToastAndroid.SHORT);
     }
   }
+
 
 }
 export default Register;

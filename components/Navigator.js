@@ -6,8 +6,8 @@ import Subject2 from './Subject2'
 import Subject3 from './Subject3'
 import Subject4 from './Subject4'
 import Subject5 from './Subject5'
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-
+import { loadApp } from './Auth.js'
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 const BottomTransition = (index, position, height) => {
   const screenRange = [index - 1, index, index + 1];
@@ -50,18 +50,12 @@ const NavigationConfig = () => {
 }
 
 
-const Nav = createStackNavigator(
+const SignedOut = createStackNavigator(
 // creating a navigator stack
   {
   // assigning names to different components
     Welcome: Welcome,
     Register: Register,
-    Home: Home,
-    Subject: Subject,
-    Subject2: Subject2,
-    Subject3: Subject3,
-    Subject4: Subject4,
-    Subject5: Subject5,
   },
   {
   // "Home screen" / On start - first screen
@@ -70,7 +64,42 @@ const Nav = createStackNavigator(
   }
 );
 
-const Navigator = createAppContainer(Nav);
-// creating a "element" from navigator, so it can be used in App.js
+const SignedIn = createStackNavigator(
+  {
+    Home: Home,
+    Subject: Subject,
+    Subject2: Subject2,
+    Subject3: Subject3,
+    Subject4: Subject4,
+    Subject5: Subject5,
+  },
+  {
+    initialRouteName: 'Home',
+    transitionConfig: NavigationConfig,
+  }
+);
 
-export default Navigator;
+const Nav = createSwitchNavigator(
+  {
+    SignedIn: SignedIn,
+    SignedOut: SignedOut
+  },
+  {
+    initialRouteName: 'SignedOut',
+    transitionConfig: NavigationConfig,
+  }
+);
+const NavNew = createSwitchNavigator(
+  {
+    SignedIn: SignedIn,
+    SignedOut: SignedOut
+  },
+  {
+    initialRouteName: 'SignedIn',
+    transitionConfig: NavigationConfig,
+  }
+);
+export const NavigatorNew = createAppContainer(NavNew);
+export const Navigator = createAppContainer(Nav);
+
+
