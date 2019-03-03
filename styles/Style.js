@@ -378,21 +378,33 @@ export default StyleSheet.create({
     marginBottom: hp('3%'),
     elevation: 7,  
   },
-  goodResponseText: {
-    fontSize: hp('3%'),
+  responseText: {
+    fontSize: hp('4%'),
     fontFamily: 'raleway-semibold',
     color: 'white' ,
     textAlign: 'center',
-    marginTop: hp('5%')
   },
-  badResponseText: {
-    fontSize: hp('3%'),
-    fontFamily: 'raleway-semibold',
+  responseTextSpecial: {
+    fontSize: hp('9%'),
+    marginTop: hp('5%'),
+    marginBottom: hp('5%'),
+    fontFamily: 'raleway-extrabold',
     color: 'white' ,
-    textAlign: 'center',
-    marginTop: hp('5%')
+    textAlign: 'center'
   },
   testUniversalBtn: {
+    marginTop: hp('4%'),
+    paddingTop: hp('1.5%'),
+    paddingBottom: hp('1.5%'),
+    paddingLeft: hp('1.5%'),
+    paddingRight: hp('1.5%'),
+    backgroundColor: '#EA8A64',
+    borderRadius: 50,
+    elevation: 2,  
+  },
+  testUniversalBtnSpecial: {
+    width: wp('15%'),
+    height: wp('15%'),
     marginTop: hp('4%'),
     paddingTop: hp('1.5%'),
     paddingBottom: hp('1.5%'),
@@ -418,5 +430,9 @@ export default StyleSheet.create({
     fontSize: hp('4%'),
     color: 'white',
     textAlign: 'center'
+  },
+  answerContainer: {
+    paddingTop: hp('8%')
   }
- });
+
+});

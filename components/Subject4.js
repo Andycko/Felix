@@ -351,20 +351,25 @@ export class Subject4 extends React.Component {
                 <View style={[styles.center, styles.questView]} key="6">
                 {
                   (this.state.goodAnswer == 5) ?
-                  <View>
-                    
-                    <Text style={[styles.goodResponseText]}>You've got <Text style={[styles.orange]}>{this.state.goodAnswer}</Text>/5 answers good!</Text>
-                    <Text style={[styles.goodResponseText]}>You are ready to proceed to the next chapter :)</Text>
-                    <TouchableOpacity style={[styles.testUniversalBtn]} onPress={() => {this.props.navigation.navigate('Subject5'), this.defaultState()}}>
-                      <Text style={[styles.testUniversalBtnTitle]}>=></Text>
-                    </TouchableOpacity>
+                  <View style={[styles.answerContainer, styles.center]}>
+                    <Text style={[styles.responseText]}>Great job young padavan</Text>
+                    <Text style={[styles.responseTextSpecial]}><Text style={[styles.orange]}>{this.state.goodAnswer}</Text>/5</Text>
+                    <Text style={[styles.responseText]}>You are now ready to proceed to the Next chapter!</Text>
+                    <TouchableOpacity style={[styles.testUniversalBtnSpecial, styles.center]} 
+                      onPress={() => {this.props.navigation.navigate('Subject5'), this.defaultState()}}
+                    >
+                      <Ionicons name="md-arrow-forward" size={40} color="white" />
+                    </TouchableOpacity>  
                   </View>
                   :
-                  <View>
-                    <Text style={[styles.badResponseText]}>You've got <Text style={[styles.orange]}>{this.state.goodAnswer}</Text>/5 answers good!</Text>
-                    <Text style={[styles.badResponseText]}>I think you should get back to learning ;)</Text>
-                    <TouchableOpacity style={[styles.testUniversalBtn]} onPress={() => {this.defaultState(), console.log(this.state.goodAnswer)}}>
-                      <Text style={[styles.testUniversalBtnTitle]}>=></Text>
+                  <View style={[styles.answerContainer, styles.center]}>
+                    <Text style={[styles.responseText]}>Could be better</Text>
+                    <Text style={[styles.responseTextSpecial]}><Text style={[styles.orange]}>{this.state.goodAnswer}</Text>/5</Text>
+                    <Text style={[styles.responseText]}>You should go review this chapter once more!</Text>
+                    <TouchableOpacity style={[styles.testUniversalBtnSpecial, styles.center]}
+                     onPress={() => {this.defaultState()}}
+                    >
+                      <Ionicons name="md-arrow-forward" size={40} color="white" />
                     </TouchableOpacity>
                   </View>
                 }
