@@ -12,6 +12,20 @@ import {
 import styles from '../styles/Style';
 import { Font } from 'expo';
 
+/**
+ * @method constructor
+ * inicializing props and state
+ * 
+ * @function addName
+ * setting name from the user input to the local storage which will be saved there until the app is erased
+ * 
+ * @function pressed
+ * called after "go" button is pressed, checking the validity of the user name and calling the addName and navigate
+ * 
+ * @method componentDidMount
+ * loading all the fonts
+ */
+
 export class Register extends React.Component {
   
   static navigationOptions = {
@@ -26,13 +40,34 @@ export class Register extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {name: null,
-                  newestID: null};
+    this.state = {name: null};
+  }
+
+  addName = async (text) => {
+    try {
+      await AsyncStorage.setItem('userToken', text);
+    } catch (error) {
+
+    }
+  }
+  
+  pressed(text){
+    if(text != null){
+      var space = text.indexOf(" ");
+    }else{
+      var space = -1
+    }
+
+    if(text && text.length >= 2 && space == -1){
+      this.addName(text);
+      this.props.navigation.navigate('Home');
+    } else {
+      ToastAndroid.show('Please provide me with\nat least two characters!', ToastAndroid.SHORT);
+    }
   }
 
   async componentDidMount() {
     await Font.loadAsync({
-    // loading font from files
       'raleway-black': require('../assets/fonts/Raleway-Black.ttf'),
       'raleway-extrabold': require('../assets/fonts/Raleway-ExtraBold.ttf'),
       'raleway-bold': require('../assets/fonts/Raleway-Bold.ttf'),
@@ -44,7 +79,6 @@ export class Register extends React.Component {
     });
      
     this.setState({fontLoaded: true });
-    // if get to this point, font is loaded -> set state to true
   }
 
   render() {
@@ -86,33 +120,6 @@ export class Register extends React.Component {
     );
 
   }
-
-  addName = async (text) => {
-    try {
-      await AsyncStorage.setItem('userToken', text);
-    } catch (error) {
-      // Error saving data
-    }
-  }
-  
-  pressed(text){
-    if(text != null){
-      var space = text.indexOf(" ");
-    }else{
-      var space = -1
-    }
-
-    if(text && text.length >= 2 && space == -1){
-    // checking if there is input and whether it is longer than 2 chars
-      this.addName(text);
-      // adding the name to AsynchStorage
-      this.props.navigation.navigate('Home');
-      // navigating to next screen - Home
-    } else {
-      ToastAndroid.show('Please provide me with\nat least two characters!', ToastAndroid.SHORT);
-    }
-  }
-
 
 }
 export default Register;

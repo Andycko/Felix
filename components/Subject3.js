@@ -16,6 +16,31 @@ import {
 } from 'react-native-responsive-screen';
 import { AndroidBackHandler } from 'react-navigation-backhandler';
 
+/**
+ * @class Bold
+ * this is a custom component for getting bold text,
+ * was created because there are loads of bolded words in the curriculums
+ * 
+ * @class UList
+ * this is a custom component for creating a unordered bullet list
+ * 
+ * @class Subject
+ * @method constructor
+ * inicialize props and state, state contains important variables, which are changing the current look of the app
+ * 
+ * @function defaultState
+ * this function is used to change all the state object to its default values
+ * 
+ * @function onBackButtonPressAndroid 
+ * this function modifies the action that is called when the back button on Android is pressed
+ * 
+ * @function scrollToNext
+ * this function is called when the button at the end of each chapter is pressed and it scrolls to the next chapter
+ * 
+ * @method componentDidMount
+ * loads all the fonts
+ */
+
 class Bold extends React.Component {
   render(){
     return(
@@ -70,9 +95,15 @@ export class Subject3 extends React.Component {
     return true
   }
 
+  scrollToNext(){
+    const page = this.state.toPage;
+
+    this.setState({toPage: page + 1});
+    this.viewPager.setPage(page);
+  }
+
   async componentDidMount() {
     await Font.loadAsync({
-    // loading font from files
       'raleway-black': require('../assets/fonts/Raleway-Black.ttf'),
       'raleway-extrabold': require('../assets/fonts/Raleway-ExtraBold.ttf'),
       'raleway-bold': require('../assets/fonts/Raleway-Bold.ttf'),
@@ -84,7 +115,6 @@ export class Subject3 extends React.Component {
     });
     
     this.setState({fontLoaded: true });
-    // if get to this point, font is loaded -> set state to true
   }
 
   render() {
@@ -332,13 +362,6 @@ export class Subject3 extends React.Component {
       }
       </View>
     );
-  }
-
-  scrollToNext(){
-    const page = this.state.toPage;
-
-    this.setState({toPage: page + 1});
-    this.viewPager.setPage(page);
   }
 };
 

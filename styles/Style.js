@@ -1,6 +1,5 @@
 'use strict'
-import React from 'react';
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp
@@ -23,8 +22,6 @@ export default StyleSheet.create({
   orange: {
     color: '#F0803C',
   },
-
-
 
 
   wrap: {

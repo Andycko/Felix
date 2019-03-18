@@ -10,6 +10,18 @@ import {
 import styles from '../styles/Style';
 import { Font } from 'expo';
 
+/**
+ * @method constructor
+ * inicializing the props and state, calling loadName()
+ * 
+ * @function loadName
+ * this function is used for loading the existing user name from local storage
+ * 
+ * @method componentDidMount
+ * is called after the mount of home component and is loading all the fonts
+ *
+ */
+
 export class Home extends React.Component {
   
   static navigationOptions = {
